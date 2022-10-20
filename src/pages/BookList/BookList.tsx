@@ -1,19 +1,25 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react'
-import { getBooks } from '../../axios/api';
+import { useState, useEffect } from 'react'
+import ErrorBoundary from '../../components/ErrorBoundary';
+import { Table } from '../../components/Table';
 import { getAllBooks } from '../../services/services';
 
 export const BookList = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    const data: any = getAllBooks().then(res => console.log('res', res))
-    console.log('data', data)
-    
-    setData(data)
+    initializePage()
   }, [])
 
+  const initializePage = async () => {
+    const books: any = await getAllBooks()
+    setData(books)
+  }
+
+  console.log('data1', data)
+
   return (
-    <div>BookList</div>
+    <ErrorBoundary>
+      <Table data={data}/>
+    </ErrorBoundary>
   )
 }
