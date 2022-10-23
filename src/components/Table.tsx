@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export const Table = (data: any) => {
+  const [searchInput, setSearchInput] = useState('')
+
+  const handleSearchBooks = (e: any) => setSearchInput(e.target.value)
+
+  const filteredBooks = data?.data?.filter((book: any) => book?.title?.toLowerCase()?.includes(searchInput?.toLowerCase()))
+
   return (
     <div>
-        Table
-        
+        <input
+          type='search'
+          placeholder='Search books' 
+          onChange={handleSearchBooks}
+        />       
         <table>
             <thead>
                 <tr>
@@ -13,7 +22,7 @@ export const Table = (data: any) => {
                 </tr>
             </thead>
             <tbody>
-                {data.data.map((book: any) => (
+                {filteredBooks.map((book: any) => (
                     <tr key={book.id}>
                         <td>{book.title}</td>
                         <td>{book.pagesNumber}</td>
