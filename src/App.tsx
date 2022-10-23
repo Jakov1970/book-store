@@ -7,12 +7,6 @@ function App() {
   return (
     <div>
       <BookList />
-
-        <Link to="/ce-book">
-          <button>  
-            Add new book
-          </button>
-        </Link>
     </div>
   );
 }

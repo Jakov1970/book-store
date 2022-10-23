@@ -13,7 +13,8 @@ export const Table = (data: any) => {
           type='search'
           placeholder='Search books' 
           onChange={handleSearchBooks}
-        />       
+        />   
+            
         <table>
             <thead>
                 <tr>
